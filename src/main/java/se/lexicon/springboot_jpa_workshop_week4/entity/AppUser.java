@@ -16,7 +16,10 @@ public class AppUser {
     @Column(nullable = false, length = 8)
     private String password;
     private LocalDate regDate;
+
+
     @OneToOne(cascade = {CascadeType.PERSIST, CascadeType.REMOVE, CascadeType.MERGE, CascadeType.REFRESH, CascadeType.DETACH})
+    @JoinColumn(name = "details_id")
     private Details details;
 
     public AppUser() {
@@ -27,6 +30,14 @@ public class AppUser {
         this();
         this.username = username;
         this.password = password;
+    }
+
+    public AppUser(String username, String password, LocalDate regDate, Details details) {
+        this();
+        this.username = username;
+        this.password = password;
+        this.regDate = regDate;
+        setDetails(details);
     }
 
     public int getAppUserId() {
