@@ -21,12 +21,13 @@ public class Book {
     }
 
     public Book(String isbn, String title) {
+        this();
         this.isbn = isbn;
         this.title = title;
     }
 
-    public Book(int bookId, String isbn, String title, int maxLoanDays) {
-        this.bookId = bookId;
+    public Book(String isbn, String title, int maxLoanDays) {
+        this();
         this.isbn = isbn;
         this.title = title;
         this.maxLoanDays = maxLoanDays;

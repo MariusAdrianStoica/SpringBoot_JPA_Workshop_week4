@@ -16,7 +16,7 @@ public class BookLoan {
     @ManyToOne
     private AppUser borrower;
     @ManyToOne(cascade = {CascadeType.DETACH, CascadeType.REFRESH})
-    @JoinColumn(name ="book_bookId" )
+    @JoinColumn(name ="book_Id" )
     private Book book;
 
 
