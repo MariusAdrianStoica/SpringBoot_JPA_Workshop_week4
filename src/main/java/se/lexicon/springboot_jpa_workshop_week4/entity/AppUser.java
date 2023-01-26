@@ -32,11 +32,10 @@ public class AppUser {
         this.password = password;
     }
 
-    public AppUser(String username, String password, LocalDate regDate, Details details) {
+    public AppUser(String username, String password,  Details details) {
         this();
         this.username = username;
         this.password = password;
-        this.regDate = regDate;
         setDetails(details);
     }
 

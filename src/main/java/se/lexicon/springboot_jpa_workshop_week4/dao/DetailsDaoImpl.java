@@ -36,11 +36,13 @@ public class DetailsDaoImpl implements DetailsDao{
     }
 
     @Override
+    @Transactional
     public Details update(Details details) {
         return entityManager.merge(details);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         Details foundDetails = entityManager.find(Details.class, id);
         if(foundDetails != null) entityManager.remove(foundDetails);

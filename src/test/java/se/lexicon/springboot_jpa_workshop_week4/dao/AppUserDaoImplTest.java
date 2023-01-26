@@ -32,32 +32,36 @@ public class AppUserDaoImplTest {
     //step7: @DirtiesContext - to remove temp DB at the end of the test
 
     @Autowired
-    TestEntityManager em;
+    TestEntityManager tem;
     @Autowired
     AppUserDaoImpl testObject;
-    @Autowired
-    DetailsDaoImpl testDetailObject;
 
-    int appUserId;
+
+    int appUserId1;
+    int appUserId2;
 
     @BeforeEach
-    public void setup(){
+    public void setup() {
 
-        Details detailsData = new Details("test.test@test.se", "Test", LocalDate.parse("2000-01-01"));
-        Details createdDetails =em.persist(detailsData);
+        Details detailsData1 = new Details("test.test@test.se", "Test", LocalDate.parse("2000-01-01"));
+        AppUser appUserData1 = new AppUser("marius.stoica", "password", detailsData1);
+        AppUser createdAppUser1 = tem.persist(appUserData1);
 
-        AppUser appUserData = new AppUser("marius.stoica", "password");
-        appUserData.setDetails(createdDetails);
+        Details detailsData2 = new Details("test2.test2@test.se", "Test2", LocalDate.parse("2000-01-02"));
+        AppUser appUserData2 = new AppUser("user1", "pass", detailsData2);
+        AppUser createdAppUser2 = tem.persist(appUserData2);
 
-        AppUser createdAppUser =em.persist(appUserData);
-        appUserId = createdAppUser.getAppUserId();
+
+        appUserId1 = createdAppUser1.getAppUserId();
+        appUserId2 = createdAppUser2.getAppUserId();
+
     }
 
 
-    /*
-@Test
-public void create(){
-        AppUser appUserDataTest = new AppUser("test.test", "password");
+    @Test
+    public void create() {
+        Details detailDataTest = new Details("email@test.se", "test3", LocalDate.parse("2022-12-12"));
+        AppUser appUserDataTest = new AppUser("test.test", "password", detailDataTest);
 
         AppUser createdAppUserTest = testObject.create(appUserDataTest);
 
@@ -65,10 +69,7 @@ public void create(){
         assertNotNull(createdAppUserTest.getAppUserId());
 
 
-}
+    }
 
-
-
-     */
 
 }

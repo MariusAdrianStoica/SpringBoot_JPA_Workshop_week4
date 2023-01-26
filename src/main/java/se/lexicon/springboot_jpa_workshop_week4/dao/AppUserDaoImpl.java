@@ -28,6 +28,7 @@ public class AppUserDaoImpl implements AppUserDao{
     }
 
     @Override
+    @Transactional
     public AppUser create(AppUser appUser) {
         if (appUser == null)throw new IllegalArgumentException("appUser was null!");
         entityManager.persist(appUser);
@@ -35,11 +36,13 @@ public class AppUserDaoImpl implements AppUserDao{
     }
 
     @Override
+    @Transactional
     public AppUser update(AppUser appUser) {
         return entityManager.merge(appUser);
     }
 
     @Override
+    @Transactional
     public void delete(int id) {
         AppUser foundAppUser = entityManager.find(AppUser.class, id);
         if (foundAppUser!= null) entityManager.remove(foundAppUser);
